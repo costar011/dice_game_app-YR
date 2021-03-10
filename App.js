@@ -9,8 +9,7 @@ import {
 
 const CURRENT_WIDTH = Dimensions.get(`window`).width;
 
-const DICE_RENDOM = ["1", "2", "3", "4", "5", "6"];
-const DICE_RENDOM2 = ["1", "2", "3", "4", "5", "6"];
+const DICE_RANDOM = ["1", "2", "3", "4", "5", "6"];
 
 const App = () => {
   const [tab, setTab] = useState(0);
@@ -18,28 +17,25 @@ const App = () => {
   const [dice2, setDice2] = useState(`기다리세요`);
   const [resultText, setResultText] = useState(``);
 
-  const _RandomNumber = () => Math.floor(Math.random() * 6 + 1);
-  const _RandomNumber2 = () => Math.floor(Math.random() * 6 + 1);
+  const _RandomNumber = () => Math.floor(Math.random() * 5 + 1);
 
   const _startButtonClickHandler = (value) => {
     setTab(value);
 
     if (value === 0) {
-      setDice1(`잠깐 기다려주세요`);
-      setDice2(`잠깐 기다려주세요`);
+      setDice1(`잠시만 기다려 주세요`);
+      setDice2(`잠시만 기다려 주세요`);
       setResultText(``);
     }
 
     if (value === 1) {
       const dice1 = _RandomNumber();
-      const dice2 = _RandomNumber2();
-
-      const result1 = DICE_RENDOM[dice1];
-      const result2 = DICE_RENDOM2[dice2];
+      const dice2 = _RandomNumber();
       const result = dice1 + dice2;
 
-      setDice1(result1);
-      setDice2(result2);
+      setDice1(dice1);
+      setDice2(dice2);
+
       setResultText(result);
     }
   };
@@ -59,17 +55,17 @@ const App = () => {
           <View style={styles.MiddleArea}>
             <View style={styles.MiddleTopArea}>
               <View style={styles.MiddledetailBox}>
-                <Text style={styles.Text}>dice1</Text>
+                <Text style={styles.Text}>{dice1}</Text>
               </View>
 
               <View style={styles.MiddledetailBox}>
-                <Text style={styles.Text}>dice2</Text>
+                <Text style={styles.Text}>{dice2}</Text>
               </View>
             </View>
 
             <View style={styles.BottomArea}>
               <View style={styles.BottomdetailBox}>
-                <Text style={styles.Text}>value1</Text>
+                <Text style={styles.Text}>{resultText}</Text>
               </View>
             </View>
           </View>
