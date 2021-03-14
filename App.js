@@ -7,17 +7,18 @@ import {
   Dimensions,
 } from "react-native";
 
-const CURRENT_WIDTH = Dimensions.get(`window`).width;
+import { FontAwesome5 } from "@expo/vector-icons";
 
-const DICE_RANDOM = ["1", "2", "3", "4", "5", "6"];
+const CURRENT_WIDTH = Dimensions.get(`window`).width;
 
 const App = () => {
   const [tab, setTab] = useState(0);
-  const [dice1, setDice1] = useState(`기다리세요`);
-  const [dice2, setDice2] = useState(`기다리세요`);
-  const [resultText, setResultText] = useState(``);
+  const [dice1, setDice1] = useState(0);
+  const [dice2, setDice2] = useState(0);
+  const [resultText, setResultText] = useState(0);
 
   const _RandomNumber = () => Math.floor(Math.random() * 5 + 1);
+  const _RandomNumber2 = () => Math.floor(Math.random() * 5 + 1);
 
   const _startButtonClickHandler = (value) => {
     setTab(value);
@@ -25,12 +26,13 @@ const App = () => {
     if (value === 0) {
       setDice1(`잠시만 기다려 주세요`);
       setDice2(`잠시만 기다려 주세요`);
+
       setResultText(``);
     }
 
     if (value === 1) {
       const dice1 = _RandomNumber();
-      const dice2 = _RandomNumber();
+      const dice2 = _RandomNumber2();
       const result = dice1 + dice2;
 
       setDice1(dice1);
